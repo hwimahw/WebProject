@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.rmi.ServerException;
 
-public class FileServlet extends HttpServlet {
+public class Servlet2 extends HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter pw = response.getWriter();
-        Matrix matrix = new Matrix();
-        System.out.println(matrix.toString());
-        Graph graph = new Graph(matrix);
-        int result = graph.quantityOfIslands(graph)- matrix.quantityOfDots();
-        Data data = new Data(matrix.getN(), matrix.getM(), matrix.toString(), result);
-        pw.print(data.getJsonString());
-        getServletConfig();
+        response.addCookie(new Cookie("aaaa", "bbbb"));
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/servlet3");
+        requestDispatcher.forward(request, response);
+        pw.println("SSSSSSSSSSSSS");
+
+
     }
 }
