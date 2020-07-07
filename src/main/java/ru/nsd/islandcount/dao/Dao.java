@@ -1,4 +1,4 @@
-package ru.nsd.islandcount;
+package ru.nsd.islandcount.dao;
 
 import java.util.List;
 

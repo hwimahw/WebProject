@@ -1,4 +1,8 @@
-package ru.nsd.islandcount;
+package ru.nsd.islandcount.dao;
+
+import ru.nsd.islandcount.ConnectionFactory;
+import ru.nsd.islandcount.Data;
+import ru.nsd.islandcount.dao.Dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,11 +72,12 @@ public class DataDao implements Dao<Data> {
     public boolean update(Data data) {
         Connection connection = ConnectionFactory.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE user SET n=?, m=?, matrix=?, result=? WHERE id=?");
-            ps.setInt(1, data.getN());
-            ps.setInt(2, data.getM());
-            ps.setString(3, data.getMatrix());
-            ps.setInt(4, data.getResult());
+            PreparedStatement ps = connection.prepareStatement("UPDATE user SET id=?,n=?, m=?, matrix=?, result=? WHERE id=?");
+            ps.setInt(1, data.getId());
+            ps.setInt(2, data.getN());
+            ps.setInt(3, data.getM());
+            ps.setString(4, data.getMatrix());
+            ps.setInt(5, data.getResult());
             int i = ps.executeUpdate();
             if (i == 1) {
                 return true;
